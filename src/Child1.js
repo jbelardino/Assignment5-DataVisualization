@@ -4,21 +4,33 @@ import * as d3 from "d3";
 class Child1 extends Component {
   state = { 
     company: "Apple", // Default Company
-    selectedMonth: 'November' //Default Month
+    selectedMonth: 'Nov' //Default Month
   };
 
   componentDidMount() {
-    console.log(this.props.csv_data) // Use this data as default. When the user will upload data this props will provide you the updated data
+    //console.log(this.props.csv_data) // Use this data as default. When the user will upload data this props will provide you the updated data
     this.renderChart();
   }
 
   componentDidUpdate() {
-    console.log(this.props.csv_data)
+    //console.log(this.props.csv_data)
     this.renderChart();
   }
 
   renderChart(){
-    var data = this.props.csv_data
+    var originalData = this.props.csv_data
+    var data = []
+
+    for(var i = 0; i < originalData.length; i++){
+      if(originalData[i].Company === this.state.company){
+        var date = originalData[i].Date.toString()
+        var dateArray = date.split(/ /);
+        if(dateArray[1] === this.state.selectedMonth){
+          data.push(originalData[i])
+        }
+      }
+    }
+    console.log(data)
 
     // Set the dimensions of the chart
     const margin = { top: 20, right: 30, bottom: 40, left: 40 },
@@ -97,9 +109,10 @@ class Child1 extends Component {
       .attr("class", "y axis")
       .call(d3.axisLeft(y_Scale));
 
-    svg.selectAll("openCircle")
+    svg.selectAll(".openCircle")
     .data(data)
     .join("circle")
+    .attr("class", "openCircle")
       .attr("cx", function(d){
         return x_Scale(d.Date)
       })
@@ -109,9 +122,10 @@ class Child1 extends Component {
       .attr("r", 4)
       .style("fill", "#b2df8a");
 
-    svg.selectAll("closeCircle")
+    svg.selectAll(".closeCircle")
       .data(data)
       .join("circle")
+      .attr("class", "closeCircle")
         .attr("cx", function(d){
           return x_Scale(d.Date)
         })
@@ -144,18 +158,18 @@ class Child1 extends Component {
         <div className="dropdownMenu">
         <h1>{this.state.selectedMonth}</h1>
           <text>Month: </text>
-          <input type="radio" name="month" value={months[0]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[0]}
-          <input type="radio" name="month" value={months[1]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[1]}
-          <input type="radio" name="month" value={months[2]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[2]}
-          <input type="radio" name="month" value={months[3]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[3]}
-          <input type="radio" name="month" value={months[4]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[4]}
-          <input type="radio" name="month" value={months[5]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[5]}
-          <input type="radio" name="month" value={months[6]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[6]}
-          <input type="radio" name="month" value={months[7]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[7]}
-          <input type="radio" name="month" value={months[8]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[8]}
-          <input type="radio" name="month" value={months[9]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[9]}
-          <input type="radio" name="month" value={months[10]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[10]}
-          <input type="radio" name="month" value={months[11]} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[11]}
+          <input type="radio" name="month" value={'Jan'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[0]}
+          <input type="radio" name="month" value={'Feb'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[1]}
+          <input type="radio" name="month" value={'Mar'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[2]}
+          <input type="radio" name="month" value={'Apr'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[3]}
+          <input type="radio" name="month" value={'May'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[4]}
+          <input type="radio" name="month" value={'Jun'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[5]}
+          <input type="radio" name="month" value={'Jul'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[6]}
+          <input type="radio" name="month" value={'Aug'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[7]}
+          <input type="radio" name="month" value={'Sep'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[8]}
+          <input type="radio" name="month" value={'Oct'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[9]}
+          <input type="radio" name="month" value={'Nov'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[10]}
+          <input type="radio" name="month" value={'Dec'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[11]}
         </div>
 
         <div className="lineGraph">
