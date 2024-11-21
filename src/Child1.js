@@ -120,7 +120,17 @@ class Child1 extends Component {
         return y_Scale(d.Open)
       })
       .attr("r", 4)
-      .style("fill", "#b2df8a");
+      .style("fill", "#b2df8a")
+      .on("mouseover", e =>{
+        console.log("cx", e.target.cx.baseVal.value)
+        svg.append("rect").attr('x', e.target.cx.baseVal.value).attr('y', e.target.cy.baseVal.value)
+        .attr('width', 100).attr('height', 100).attr('border', 'black').attr('border-width', 1)
+        console.log(e)
+      })
+      .on("mouseout", e =>{
+        svg.select("rect").remove()
+      })
+      //https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2
 
     svg.selectAll(".closeCircle")
       .data(data)
