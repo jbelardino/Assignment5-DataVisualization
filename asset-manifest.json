@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Assignment5-DataVisualization/static/css/main.d4246539.css",
+    "main.js": "/Assignment5-DataVisualization/static/js/main.bdf00109.js",
+    "index.html": "/Assignment5-DataVisualization/index.html",
+    "main.d4246539.css.map": "/Assignment5-DataVisualization/static/css/main.d4246539.css.map",
+    "main.bdf00109.js.map": "/Assignment5-DataVisualization/static/js/main.bdf00109.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d4246539.css",
+    "static/js/main.bdf00109.js"
+  ]
+}
