@@ -163,7 +163,6 @@ class Child1 extends Component {
       <div className="child1">
 
         <div className="radioButtons">
-          <h1>{this.state.company}</h1>
           <text>Company: </text>
           <input type="radio" name="company" value={options[0]} onChange={e=>this.setState({company : e.target.value})}/>{options[0]}
           <input type="radio" name="company" value={options[1]} onChange={e=>this.setState({company : e.target.value})}/>{options[1]}
@@ -173,7 +172,6 @@ class Child1 extends Component {
         </div>
 
         <div className="dropdownMenu">
-        <h1>{this.state.selectedMonth}</h1>
           <text>Month: </text>
           <input type="radio" name="month" value={'Jan'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[0]}
           <input type="radio" name="month" value={'Feb'} onChange={e=>this.setState({selectedMonth : e.target.value})}/>{months[1]}
