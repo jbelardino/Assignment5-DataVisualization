@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import * as d3 from "d3";
+import "./Child1.css";
 
 class Child1 extends Component {
   state = { 
@@ -121,16 +122,21 @@ class Child1 extends Component {
       })
       .attr("r", 4)
       .style("fill", "#b2df8a")
-      .on("mouseover", e =>{
-        console.log("cx", e.target.cx.baseVal.value)
-        svg.append("rect").attr('x', e.target.cx.baseVal.value).attr('y', e.target.cy.baseVal.value)
-        .attr('width', 100).attr('height', 100).attr('border', 'black').attr('border-width', 1)
-        console.log(e)
-      })
-      .on("mouseout", e =>{
-        svg.select("rect").remove()
-      })
-      //https://medium.com/@kj_schmidt/show-data-on-mouse-over-with-d3-js-3bf598ff8fc2
+
+      //I tried to include the tooltip but i couldn't figure it out in time
+      
+      // .on("mouseover", e =>{
+
+      //   // d3.selectAll(".tooltip")
+      //   // .data(data)
+      //   // .join("div").attr("class","tooltip")
+      //   // .append("text").text()
+
+      //   console.log("cx", e)
+      // })
+      // .on("mouseout", e =>{
+      //   //d3.selectAll(".tooltip").remove()
+      // })
 
     svg.selectAll(".closeCircle")
       .data(data)
@@ -155,6 +161,7 @@ class Child1 extends Component {
 
     return (
       <div className="child1">
+
         <div className="radioButtons">
           <h1>{this.state.company}</h1>
           <text>Company: </text>
@@ -187,6 +194,12 @@ class Child1 extends Component {
             <g></g>
           </svg>
         </div>
+
+        {/* <div className="tooltip">
+          <text>test</text>
+        </div> */}
+
+        
 
       </div>
     );
